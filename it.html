@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        /* Your CSS styles here */
+    </style>
+</head>
+<body>
+    <header>
+        <h1>New Thought Website</h1>
+    </header>
+    
+    <nav>
+        <!-- Your navigation menu here -->
+    </nav>
+    
+    <div class="container">
+        <h2>Welcome to Our New Thought Website</h2>
+        <p>This is a place where you can explore new ideas, gain insights, and expand your horizons.</p>
+        
+        <form id="thoughtForm">
+            <label><br>
+                <input type="radio" id="motivational" name="category" value="Motivational">
+                <label for="motivational">Motivational</label><br>
+                
+                <input type="radio" id="sad" name="category" value="Sad">
+                <label for="sad">Sad</label><br>
+                
+                <input type="radio" id="happy" name="category" value="Happy">
+                <label for="happy">Happy</label><br>
+                
+                <input type="submit" value="Submit Thought">
+                
+            </label>
+        </form>
+
+        <div id="quoteContainer" style="display: none;">
+            <h3>Thought of the Day:</h3>
+            <p id="quote"></p>
+        </div>
+    </div>
+    
+    <footer>
+        <div class="footer">
+            <a href="#">Link</a> | <a href="#">Privacy Policy</a> | <a href="#">Help</a>
+        </div>   
+    </footer>
+
+    <script>
+        // Define arrays of quotes for each category
+        const motivationalQuotes = [
+            "Your time is limited, don't waste it living someone else's life.",
+            "The only way to do great work is to love what you do.",
+            "Success is not final, failure is not fatal: It is the courage to continue that counts."
+        ];
+
+        const sadQuotes = [
+            "It's okay to not be okay sometimes.",
+            "Tears come from the heart and not from the brain.",
+            "The pain will eventually subside, but the memories will remain."
+        ];
+
+        const happyQuotes = [
+            "Happiness is not something ready made. It comes from your own actions.",
+            "The most important thing is to enjoy your life—to be happy—it's all that matters.",
+            "Every day may not be good, but there's something good in every day."
+        ];
+
+        // JavaScript code to handle form submission and display quotes
+        document.getElementById("thoughtForm").addEventListener("submit", function(event) {
+            event.preventDefault(); // Prevent the form from submitting normally
+
+            // Get the selected category
+            const selectedCategory = document.querySelector('input[name="category"]:checked');
+            
+            if (selectedCategory) {
+                const categoryValue = selectedCategory.value;
+                const quoteContainer = document.getElementById("quoteContainer");
+                const quoteElement = document.getElementById("quote");
+
+                // Display the corresponding quote based on the selected category
+                switch (categoryValue) {
+                    case "Motivational":
+                        quoteElement.textContent = motivationalQuotes[Math.floor(Math.random() * motivationalQuotes.length)];
+                        break;
+                    case "Sad":
+                        quoteElement.textContent = sadQuotes[Math.floor(Math.random() * sadQuotes.length)];
+                        break;
+                    case "Happy":
+                        quoteElement.textContent = happyQuotes[Math.floor(Math.random() * happyQuotes.length)];
+                        break;
+                }
+
+                quoteContainer.style.display = "block"; // Show the quote container
+            } else {
+                alert("Please select a category.");
+            }
+        });
+    </script>
+</body>
+</html>
